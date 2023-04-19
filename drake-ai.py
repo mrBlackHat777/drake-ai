@@ -267,6 +267,12 @@ class App:
         model_files = vul_models.download_model(model_name, target_dir)
         console.print(f"Model files: {model_files}", style="bold blue")
         
+        logging.getLogger('numba').setLevel(logging.WARNING)
+        chunks_dict = infer_tool.read_temp("inference/chunks_temp.json")
+        existing_files = []
+        slice_db = -40
+        wav_format = 'wav'
+        
 if __name__ == "__main__":
     app = App()
     typer.run(app.main)
