@@ -1,5 +1,20 @@
 # Drake AI - Voice Cloning
-This repository contains the code and resources needed to clone Drake's voice using a pre-trained AI model. It is based on the so-vits-svc library and uses the pre-trained model to generate synthesized speech in Drake's voice.
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?style=for-the-badge&logo=jupyter)
+![Python](https://img.shields.io/badge/Python-3.8-blue?style=for-the-badge&logo=python)
+![PyTorch](https://img.shields.io/badge/PyTorch-1.8.1-red?style=for-the-badge&logo=pytorch)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.4.1-orange?style=for-the-badge&logo=tensorflow)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+
+This repository contains the code and resources needed to clone Drake's voice using a pre-trained AI model.
+It is based on the so-vits-svc library and uses the pre-trained model to generate synthesized speech in Drake's voice.
+
+Links:
+
+https://github.com/w-okada/voice-changer
+https://github.com/voicepaw/so-vits-svc-fork
+https://www.youtube.com/watch?v=9sN1JYqKv9w
+https://www.youtube.com/watch?v=2sMpIXQcSCA
 
 ## Getting Started
 Follow these steps to set up the environment and clone Drake's voice:
@@ -24,20 +39,14 @@ Install the required dependencies by running:
 ```
 pip install -r requirements.txt
 ```
-### 4. Run the Example Script
-To generate an audio file in Drake's voice, run the following command:
+
+### 4. Run the Program
+Run the program by executing the following command:
 
 ```
-python drake_voice_cloning.py --text "Hello, this is Drake speaking."
+cd notebooks
+jupyter notebook
 ```
-
-Replace the text in quotes with your desired input text.
-
-### 5. Play the Generated Audio
-The synthesized audio file will be saved as output.wav in the project directory. You can listen to the generated audio using any media player.
-
-## Using Other Voices
-To use other voices, download the corresponding pre-trained models and follow the same process as described above. Replace the model files in the models directory with the new models and adjust the drake_voice_cloning.py script accordingly.
 
 ## Acknowledgments
 This project is based on the so-vits-svc library and the pre-trained model was obtained from the Mega.nz link provided in the instructions. Special thanks to the contributors and developers of the original library and the pre-trained models.

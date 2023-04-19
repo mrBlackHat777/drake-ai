@@ -11,9 +11,7 @@ def validate_input_file(input_file: str) -> str:
     return input_file
 
 def convert_voice(input_file: str) -> str:
-    # Implement your voice conversion logic here
-    output_file = input_file.replace(".wav", "_converted.wav")
-    return output_file
+    return input_file.replace(".wav", "_converted.wav")
 
 @app.command()
 def convert(
