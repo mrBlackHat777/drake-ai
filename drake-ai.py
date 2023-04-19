@@ -1,39 +1,7 @@
 import os
-import urllib.request
-from zipfile import ZipFile
-import tarfile
-import py7zr
-import subprocess
-from time import sleep
-import gdown
+import shutil
 import huggingface_hub
 from ipywidgets import widgets
-
-def extract(path):
-    if path.endswith(".zip"):
-        with ZipFile(path, 'r') as zipObj:
-           zipObj.extractall(os.path.split(path)[0])
-    elif path.endswith(".tar.bz2"):
-        tar = tarfile.open(path, "r:bz2")
-        tar.extractall(os.path.split(path)[0])
-        tar.close()
-    elif path.endswith(".tar.gz"):
-        tar = tarfile.open(path, "r:gz")
-        tar.extractall(os.path.split(path)[0])
-        tar.close()
-    elif path.endswith(".tar"):
-        tar = tarfile.open(path, "r:")
-        tar.extractall(os.path.split(path)[0])
-        tar.close()
-    elif path.endswith(".7z"):
-        archive = py7zr.SevenZipFile(path, mode='r')
-        archive.extractall(path=os.path.split(path)[0])
-        archive.close()
-    else:
-        raise NotImplementedError(f"{path} extension not implemented.")
-
-
-# Optimized code
 
 class HFModels:
     def __init__(self, repo="therealvul/so-vits-svc-4.0", model_dir="hf_vul_models"):
@@ -47,6 +15,29 @@ class HFModels:
 
     def list_models(self):
         return self.model_folders
+          
+    def extract(self, path):
+        if path.endswith(".zip"):
+            with ZipFile(path, 'r') as zipObj:
+               zipObj.extractall(os.path.split(path)[0])
+        elif path.endswith(".tar.bz2"):
+            tar = tarfile.open(path, "r:bz2")
+            tar.extractall(os.path.split(path)[0])
+            tar.close()
+        elif path.endswith(".tar.gz"):
+            tar = tarfile.open(path, "r:gz")
+            tar.extractall(os.path.split(path)[0])
+            tar.close()
+        elif path.endswith(".tar"):
+            tar = tarfile.open(path, "r:")
+            tar.extractall(os.path.split(path)[0])
+            tar.close()
+        elif path.endswith(".7z"):
+            archive = py7zr.SevenZipFile(path, mode='r')
+            archive.extractall(path=os.path.split(path)[0])
+            archive.close()
+        else:
+            raise NotImplementedError(f"{path} extension not implemented.")
 
     def download_model(self, model_name, target_dir):
         if model_name not in self.model_folders:
@@ -80,6 +71,15 @@ class HFModels:
         return {"config_path": os.path.join(target_dir, cfg), "generator_path": os.path.join(target_dir, gen_pt), "cluster_path": clust_out}
 
 
-vul_models = HFModels()
+# Example usage
 os.chdir('/content/so-vits-svc')
-download(["https://huggingface.co/therealvul/so-vits-svc-4.0-init/resolve/main/checkpoint_best
+vul_models = HFModels()
+
+# List available models
+print(vul_models.list_models())
+
+# Download a specific model
+model_name = "Chara"  # Replace with the desired model name
+target_dir = os.path.join("models", model_name)
+model_files = vul_models.download_model(model_name, target_dir)
+print(model_files)
